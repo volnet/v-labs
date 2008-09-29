@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>drag-1</title>
+        <script type="text/javascript" src="../__firefox_extension.js"></script>
+        <script type="text/javascript" src="drag.js"></script>
+        <style type="text/css">
+            body{ font-family:Verdana; font-size:12px;
+                    -moz-user-focus:   ignore;  
+                    -moz-user-input:   disabled;  
+                    /*set the text in the firefox can't be select. equals to the onselectstart="return false" in IE & safari*/
+                    -moz-user-select:   none;  
+                 }
+            .box{ background-color:#E5ECF9; width:100px; margin:5px; border:1px solid red;}
+            .tag{ background-color:#E5ECF9; width:500px; padding:2px; padding-left:15px; border-bottom:1px solid black;}
+        </style>
+    </head>
+    <body onselectstart="return false">
+        <div id="box" style="float:left;">
+            <div id="box1" class="box">Inbox<span id="box1counter"></span></div>
+            <div id="box2" class="box">Sent Mail<span id="box2counter"></span></div>
+            <div id="box3" class="box">Drafts<span id="box3counter"></span></div>
+        </div>
+        <div id="list" style="float:left; padding-left:10px;">
+            <div id="d1" class="tag">Facebook : Jim added you as a friend on Facebook.</div>
+            <div id="d2" class="tag">Bill Gates wrote on your Super Wall!</div>
+            <div id="d3" class="tag">Jason confirmed you as a friend on Facebook.</div>
+            <div id="d4" class="tag">conn.cs--c# connection class</div>
+        </div>
+        <div style="top:120px; position:absolute;">
+            <div>
+                <span id="n1">news letter1</span><br />
+                <span id="n2">news letter2</span><br />
+                <span id="n3">news letter3</span><br />
+            </div>
+            <div id="box4" style="width:200px; height:300px; border:solid 1px #CCCCCC; position:absolute;"></div>
+            <div id="box5" style="width:200px; height:300px; border:solid 1px #CCCCCC; left:220px; position:absolute;"></div>
+        </div>
+        <div id="debug" >
+             
+        </div>
+    </body>
+    <script type="text/javascript" language="javascript">
+        //init counter from database
+        var counter = [null,0,0,0];
+        //
+        function setCounters(){
+            var modifierLeft = "(";
+            var modifierRight = ")";
+            getElementById("box1counter").innerHTML = modifierLeft + counter[1].toString() + modifierRight;
+            getElementById("box2counter").innerHTML = modifierLeft + counter[2].toString() + modifierRight;
+            getElementById("box3counter").innerHTML = modifierLeft + counter[3].toString() + modifierRight;
+        }
+        setCounters();
+        
+        var drag1 = new drag();
+        drag1.init(["d1","d2","d3","d4"], ["box1","box2","box3"],
+            true,function(){
+                var img = document.createElement("img");
+                img.src = "image/drag1.gif";
+                return img;
+            },function(){
+                var img = document.createElement("img");
+                img.src = "image/drag2.gif";
+                return img;
+            });
+        drag1.ondragend = function(){
+            if(drag1.isOverBox){
+                drag1.srcElement.style.display = "none";
+                var o = getElementById(drag1.srcElement.id);
+                o.style.display = "none";
+
+                var n = drag1.tarElement.id.split("box")[1];
+                var boxNum = isNaN(parseInt(n)) ? parseInt(n.split("counter")[0]) : parseInt(n);
+                
+                counter[boxNum]++;
+                
+                setCounters();
+            }
+        }
+        
+        
+        var drag2 = new drag();
+        drag2.init(["n1","n2","n3"], ["box4","box5"],true);
+        
+        var drag2orignialPlaceholder = null;
+        var box_unique_id = "tmp_box_12342u3ip2";
+        drag2.ondragover = function(){
+            if(drag2.tarElement != null){
+                var box = drag2.tarElement;
+                
+                var div = getElementById(box_unique_id);
+                if(div == null){
+                    div = document.createElement("div");
+                }
+                div.id = box_unique_id;
+                if(drag2orignialPlaceholder == null)
+                    drag2orignialPlaceholder = drag2.placeholder;
+                drag2.placeholder = div;
+                box.appendChild(drag2.placeholder);
+            }
+        }
+        drag2.ondragend = function(){
+            if(drag2.isOverBox == false){
+                drag2.placeholder = drag2orignialPlaceholder;
+                if(drag2orignialPlaceholder != null)
+                    removeNode(drag2orignialPlaceholder);
+                drag2orignialPlaceholder = null;
+            }
+        }
+        
+    </script>
+</html>
