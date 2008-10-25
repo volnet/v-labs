@@ -1,0 +1,5 @@
+E:\MyCSharpProject\WebSite\WebAppConfirmControl\WebAppConfirmControl\bin\WebAppConfirmControl.dll
+E:\MyCSharpProject\WebSite\WebAppConfirmControl\WebAppConfirmControl\bin\WebAppConfirmControl.pdb
+E:\MyCSharpProject\WebSite\WebAppConfirmControl\WebAppConfirmControl\obj\Debug\ResolveAssemblyReference.cache
+E:\MyCSharpProject\WebSite\WebAppConfirmControl\WebAppConfirmControl\obj\Debug\WebAppConfirmControl.dll
+E:\MyCSharpProject\WebSite\WebAppConfirmControl\WebAppConfirmControl\obj\Debug\WebAppConfirmControl.pdb
