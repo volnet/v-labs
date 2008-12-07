@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>General Search </title>
+    <style type="text/css">
+        .search_panel_css
+        {
+            text-align: center;
+            margin-top: 130px;
+        }
+        .search_logo_css
+        {
+            margin-bottom: 40px;
+        }
+        .search_select_css
+        {
+            font-size:14px;
+            font-family:微软雅黑;
+            margin-bottom: 20px;
+        }
+        .search_text_css
+        {
+            width: 300px;
+            height: 26px;
+            font-size: 20px;
+        }
+        .search_button_css
+        {
+            font-family:微软雅黑;
+            margin-top: 20px;
+            width:120px;
+            height: 26px;
+        }
+    </style>
+</head>
+<body>
+    <div id="searchPanel" class="search_panel_css">
+        <img alt="" id="search_logo" src="images/example.gif" class="search_logo_css" /><br />
+        <span id="search_select" class="search_select_css"></span>
+        <br />
+        <input id="search_text" type="text" class="search_text_css" />
+        <input id="search_button" type="button" value="搜    索" class="search_button_css" />
+    </div>
+</body>
+
+<script language="javascript" type="text/javascript" src="search_engine_assistant.js"></script>
+
+<script language="javascript" type="text/javascript">
+    var sea = new search_engine_assistant();
+    sea.create([
+        {
+            text: "本站",
+            url: "http://www.example.com/search/q={0}",
+            key: "{0}",
+            container: document.getElementById("search_select"),
+            selected: false,
+            selectedCallback: function() {
+                document.getElementById("search_logo").src = "images/example.gif";
+                document.getElementById("search_button").value = "搜索本站";
+            }
+        }, {
+            text: "百度",
+            url: "http://www.baidu.com/s?wd={0}",
+            key: "{0}",
+            container: document.getElementById("search_select"),
+            selected: false,
+            selectedCallback: function() {
+                document.getElementById("search_logo").src = "images/baidu.gif";
+                document.getElementById("search_button").value = "百度一下";
+            }
+        }, {
+            text: "谷歌",
+            url: "http://www.google.cn/search?hl=zh-CN&q={0}&btnG=Google+%E6%90%9C%E7%B4%A2&meta=&aq=f&oq=",
+            key: "{0}",
+            container: document.getElementById("search_select"),
+            selected: true,
+            selectedCallback: function() {
+                document.getElementById("search_logo").src = "images/google.gif";
+                document.getElementById("search_button").value = "谷歌更强大";
+            }
+        }, {
+            text: "搜狗",
+            url: "http://www.sogou.com/web?query={0}&_asf=www.sogou.com&_ast=1228659410&w=01019900&p=40040100",
+            key: "{0}",
+            container: document.getElementById("search_select"),
+            selected: false,
+            selectedCallback: function() {
+                document.getElementById("search_logo").src = "images/sogou.gif";
+                document.getElementById("search_button").value = "搜狗搜索";
+            }
+        }, {
+            text: "易搜",
+            url: "http://www.yisou.com/search:{0}",
+            key: "{0}",
+            container: document.getElementById("search_select"),
+            selected: false,
+            selectedCallback: function() {
+                document.getElementById("search_logo").src = "images/yisou.gif";
+                document.getElementById("search_button").value = "一搜就到";
+            }
+        }, {
+            text: "爱问",
+            url: "http://iask.sina.com.cn/search_engine/search_knowledge_engine.php?key={0}&classid=0&title=%B0%A2%CB%B9&gjss=0&x=29&y=12",
+            key: "{0}",
+            container: document.getElementById("search_select"),
+            selected: false,
+            selectedCallback: function() {
+                document.getElementById("search_logo").src = "images/iask.gif";
+                document.getElementById("search_button").value = "爱问才会赢";
+            }
+        }
+
+],
+    document.getElementById("search_text"),
+    document.getElementById("search_button"),
+    function(url) {
+        window.open(url);
+    });
+</script>
+
+</html>
