@@ -1,0 +1,7 @@
+E:\MyCSharpProject\WebSite\WebAppFilterForbiddenWord\FilterModule\obj\Debug\ResolveAssemblyReference.cache
+E:\MyCSharpProject\WebSite\WebAppFilterForbiddenWord\FilterModule\bin\Debug\FilterModule.dll
+E:\MyCSharpProject\WebSite\WebAppFilterForbiddenWord\FilterModule\bin\Debug\FilterModule.pdb
+E:\MyCSharpProject\WebSite\WebAppFilterForbiddenWord\FilterModule\obj\Debug\FilterModule.dll
+E:\MyCSharpProject\WebSite\WebAppFilterForbiddenWord\FilterModule\obj\Debug\FilterModule.pdb
+E:\MyCSharpProject\WebSite\WebAppFilterForbiddenWord\FilterModule\obj\Debug\FilterModule.Exceptions.resources
+E:\MyCSharpProject\WebSite\WebAppFilterForbiddenWord\FilterModule\obj\Debug\FilterModule.csproj.GenerateResource.Cache
