@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppFilterForbiddenWord", "WebAppFilterForbiddenWord\WebAppFilterForbiddenWord.csproj", "{A86BE8F5-CE4D-44AD-B01E-9C955BC87EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterModule", "FilterModule\FilterModule.csproj", "{F60C3DD1-9D44-4753-8B25-8425FBFB7950}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50BB550D-EF83-4E93-A44C-1F3B0B57743A}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WebAppFilterForbiddenWord.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A86BE8F5-CE4D-44AD-B01E-9C955BC87EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86BE8F5-CE4D-44AD-B01E-9C955BC87EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86BE8F5-CE4D-44AD-B01E-9C955BC87EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86BE8F5-CE4D-44AD-B01E-9C955BC87EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F60C3DD1-9D44-4753-8B25-8425FBFB7950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F60C3DD1-9D44-4753-8B25-8425FBFB7950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F60C3DD1-9D44-4753-8B25-8425FBFB7950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F60C3DD1-9D44-4753-8B25-8425FBFB7950}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
