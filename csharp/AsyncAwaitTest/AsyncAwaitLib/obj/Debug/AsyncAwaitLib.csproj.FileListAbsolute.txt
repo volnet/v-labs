@@ -1,0 +1,5 @@
+E:\Programs\AsyncAwaitTest\AsyncAwaitLib\bin\Debug\AsyncAwaitLib.dll
+E:\Programs\AsyncAwaitTest\AsyncAwaitLib\bin\Debug\AsyncAwaitLib.pdb
+E:\Programs\AsyncAwaitTest\AsyncAwaitLib\obj\Debug\AsyncAwaitLib.csprojResolveAssemblyReference.cache
+E:\Programs\AsyncAwaitTest\AsyncAwaitLib\obj\Debug\AsyncAwaitLib.dll
+E:\Programs\AsyncAwaitTest\AsyncAwaitLib\obj\Debug\AsyncAwaitLib.pdb

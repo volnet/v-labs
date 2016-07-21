@@ -1,0 +1,8 @@
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\bin\Debug\AsyncAwaitTest.exe.config
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\obj\Debug\AsyncAwaitTest.csprojResolveAssemblyReference.cache
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\bin\Debug\AsyncAwaitTest.exe
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\bin\Debug\AsyncAwaitTest.pdb
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\bin\Debug\AsyncAwaitLib.dll
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\bin\Debug\AsyncAwaitLib.pdb
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\obj\Debug\AsyncAwaitTest.exe
+E:\Programs\AsyncAwaitTest\AsyncAwaitTest\obj\Debug\AsyncAwaitTest.pdb
