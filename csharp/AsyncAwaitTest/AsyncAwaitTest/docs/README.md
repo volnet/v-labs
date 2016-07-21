@@ -21,7 +21,7 @@
 
 4. 运行结果截图如下：
 
-![](/docs/contents/result1.png)
+![](contents/result1.png)
 
 测试结论（不一定完全正确）
 --------
@@ -37,4 +37,4 @@
 官方资料
 --------
 
-1.[Task-based Asynchronous Pattern](https://www.microsoft.com/en-us/download/details.aspx?id=19957)
+1. [Task-based Asynchronous Pattern](https://www.microsoft.com/en-us/download/details.aspx?id=19957)
