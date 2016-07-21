@@ -1,0 +1,14 @@
+gears-only后续工作
+
+Methods for extracting data
+1、属性/方法的简单使用
+
+full-text search全文本搜索
+1、表的建立
+2、按不同的规则进行相应的搜索
+3、fts2的基本原理
+4、辅助表+全文本搜索的改进方案
+
+gears features
+1、多表连查
+2、多表增删改（如何启用事务）

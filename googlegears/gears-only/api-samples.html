@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gears only - API Samples</title>
+        <style type="text/css">
+            body{ font-family:Verdana; }
+            a{ text-decoration:none;}
+            err{ color:Red;}
+            .button{ width:200px; background-color:White; text-align:left;}
+            /* --warning button-- */
+            .buttonW{  width:200px; background-color:Yellow; text-align:left; }
+            .status{ margin-left:20px;}
+            .info{ font-size:12px; text-indent:1cm;}
+            .block{ border:solid 1px blue; background-color:#E5ECF9; padding:10px; margin-top:5px;}
+        </style>
+    </head>
+    <body>
+        <img src="gears-only.png" alt="gears only" style="margin-bottom:10px;"/>&nbsp;<span style="font-size:20px; float:right;">API Samples</span><br />
+        <hr />
+        <h3>Factory API</h3><h4><a href="http://code.google.com/apis/gears/upcoming/api_factory.html" title="" target="_blank">google.gears.factory.*</a></h4>
+        <div class="info"><p>The Factory class is used to instantiate all other Gears objects. Using the create method, an application specifies the interface version it uses.</p>
+<p>Use gears_init.js in your application for the easiest way to create a Factory object. The script defines google.gears.factory to refer to a Factory object.</p></div>
+        <input type="button" value="factory.getBuildInfo()" onclick="doGetBuildInfo();" class="button"/><span id="status1" class="status"></span><br />
+        <input type="button" value="factory.getPermission()" onclick="doGetPermission();"  class="button"/><span id="status2" class="status"></span><br />
+        <input type="button" value="factory.Attributes" onclick="doAttributes();"  class="button"/><span id="status3" class="status"></span><br />
+        <hr />
+        <h3>Blob API</h3><h4><a href="http://code.google.com/apis/gears/upcoming/api_blob.html" title="" target="_blank">More Info>></a></h4>
+        <div class="info">The 'Blob' object is a general-purpose way to reference binary data in web applications. </div>
+        <hr />
+        <h3>DataBase API</h3><h4><a href="http://code.google.com/apis/gears/upcoming/api_database.html" title="" target="_blank">More Info>></a></h4>
+        <div class="info">The Database API provides browser-local relational data storage to your JavaScript web application. Gears uses the open source SQLite database system.</div>
+        <input type="button" value="create & open" onclick="doCreateDataBase();"  class="button"/><span id="status4" class="status"></span><br />
+        <input type="button" value="create table" onclick="doCreateTable();"  class="button"/><span id="status5" class="status"></span><br />
+        <input type="button" value="Insert into" onclick="doInsertInto('v_name','v_telNum','v_mobilePhoneNum');"  class="button"/><span id="status6" class="status"></span><br />
+        <div class="block">
+            <div style="width:200px; float:left;">Name:</div><input id="v_name" style="width:200px;" value="GoCool" onclick="clearStatus('v_name');"/>e.g:&nbsp;John<br />
+            <div style="width:200px; float:left;">Tel Number:</div><input id="v_telNum" style="width:200px;" value="13788888888" onclick="clearStatus('v_telNum');"/>e.g:&nbsp;+8613799388888<br />
+            <div style="width:200px; float:left;">Mobile Phone Number:</div><input id="v_mobilePhoneNum" style="width:200px;" value="010-12345676" onclick="clearStatus('v_mobilePhoneNum');"/>e.g:&nbsp;010-88888888<br />
+        </div>
+        <input type="button" value="Select" onclick="doSelect();"  class="button"/><span id="status7" class="status"></span><br /> 
+        <input type="button" value="lastInsertRowId" onclick="doLastInsertRowId();"  class="button"/><span id="status8" class="status"></span><br /> 
+        <input type="button" value="rowsAffected" onclick="doRowsAffected();"  class="button"/><span id="status9" class="status"></span><br />   
+        <input type="button" value="Delete all(1);" onclick="doDeleteTable1();" title="DELETE FROM table" class="buttonW"/><span id="status10" class="status"></span><br />   
+        <input type="button" value="Delete all(2);" onclick="doDeleteTable2();" title="DELETE FROM table where 1" class="buttonW"/><span id="status11" class="status"></span><br />   
+        <input type="button" value="Drop table" onclick="doDropTable();" class="buttonW"/><span id="status12" class="status"></span><br />   
+    </body>
+</html>
+
+<!-- ====================================== -->
+<!-- End HTML code.  Begin JavaScript code. -->
+
+<!--<script type="text/javascript"  src="http://code.google.com/apis/gears/gears_init.js"></script>-->
+<script type="text/javascript"  src="api/gears_init.js"></script>
+<script type="text/javascript">
+function isDefined(type) {
+    return (type != 'undefined' && type != 'unknown');
+}
+
+function getElementById(element_name) {
+  if (isDefined(typeof document.getElementById)) {
+    return document.getElementById(element_name);
+  } else if(typeof isDefined(document.all)) {
+    return document.all[element_name];
+  }
+}
+
+function addStatus(id, content){
+    var container = getElementById(id);
+    if(container){
+        if(isDefined(typeof container.value))
+                container.value += content;
+        else if(isDefined(typeof container.innerHTML))
+                container.innerHTML += content; 
+        else if(isDefined(typeof container.innerText))
+                container.innerText += content;
+    }
+}
+function clearStatus(id){
+    var container = getElementById(id);
+    if(container){
+        if(isDefined(typeof container.value))
+                container.value ="";
+        else if(isDefined(typeof container.innerHTML))
+                container.innerHTML =""; 
+        else if(isDefined(typeof container.innerText))
+                container.innerText ="";
+    }
+}
+function dbCheck(idStatus){
+    if(!isDefined(typeof db))
+    {
+        addStatus(idStatus,"<err>error</err>:You must click the 'create & open' button at first!");
+        return 'false';
+    }
+    return 'ture';
+}
+
+<!-- ====================================== -->
+
+init();
+function init(){
+//    if (!window.google || google.gears) {
+//        return;
+//    }
+}
+<!-- http://code.google.com/apis/gears/upcoming/api_factory.html -->
+
+function doGetBuildInfo(){
+    addStatus('status1',google.gears.factory.getBuildInfo());
+}
+function doGetPermission(){
+    addStatus('status2',google.gears.factory.getPermission('GearsOnly','gears-only.png','Your browser has permission to use Gears.').toString());
+}
+function doAttributes(){
+    var atts = '';
+    atts += "version:" + google.gears.factory.version + "  hasPermission:" + google.gears.factory.hasPermission.toString();
+    addStatus('status3',atts);
+}
+
+
+<!-- http://code.google.com/apis/gears/upcoming/api_database.html -->
+
+var dbName = 'database-gears-only';
+var db;
+function doCreateDataBase(){
+    clearStatus('status4');
+    var idb = google.gears.factory.create('beta.database');
+    try
+    {
+        idb.close();
+        idb.open(dbName);
+        addStatus('status4',"The database '" + dbName + "' has created and opened!"); 
+        
+        //only for global
+        db = idb;
+    }
+    catch(e)
+    { 
+        idb.close();
+        addStatus('status4',"<err>exception:</err>the method 'open' make mistake!<br />info:" + e.toString()); 
+    }
+}
+var table1_name = "contacts";
+//' (Name text, TelNum text , MobilePhoneNum text, AddTime int)'
+var table1_fields = {
+    fieldName : 'Name|TelNum|MobilePhoneNum|AddTime',
+    fieldValue: 'text|text|text|int'
+};
+function getFieldsInfo(fields){
+    var returnSet = {
+        //tableFiledsStr : '',
+        fields : [],
+        error : ''
+    };
+
+    var names = fields.fieldName.split('|');
+    if(names.length == 0)
+    {
+        //returnSet.tableFiledsStr = '';
+        returnSet.fields = [];
+        returnSet.error = "<err>error</err>:no fileds here.";
+        return returnSet;
+    }
+    else
+    {
+        var values = fields.fieldValue.split('|');
+        if(names.length != values.length)
+        {
+            //returnSet.tableFiledsStr = '';
+            returnSet.fields = [];
+            returnSet.error = "<err>error</err>:fileds.count!=values.count";
+            return returnSet;
+        }
+        else
+        {
+            var fieldsStr = "";
+            //success!
+            for(var i = 0;i<names.length - 1;i++){
+                //returnSet.tableFiledsStr += (names[i] + ' ' + values[i]) + ',';
+                fieldsStr += "{name : '" + names[i] + "', type : '" + values[i] + "'}," ;
+            }
+            fieldsStr += "{name : '" + names[names.length - 1] + "', type : '" + values[names.length - 1] + "'}" ;
+            //returnSet.tableFiledsStr += names[names.length - 1] + ' ' + values[names.length - 1];
+            returnSet.fields = eval('([' + fieldsStr + '])');;
+            returnSet.error='';
+        }
+    }
+    return returnSet;
+}
+var table1_fields_info = getFieldsInfo(table1_fields);
+function getTable1FieldsStr(){
+    var fs = table1_fields_info;
+    var fieldsStr = ''
+    if(fs.error == ''){
+        for(var i=0;i<fs.fields.length-1;i++){
+            fieldsStr += (fs.fields[i].name + " " + fs.fields[i].type + ",");
+        }
+        fieldsStr += (fs.fields[fs.fields.length-1].name + " " + fs.fields[fs.fields.length-1].type);
+    }
+    return " (" + fieldsStr + ") ";
+}
+var table1_fields_str = getTable1FieldsStr();
+function doCreateTable(){
+    clearStatus('status5');
+    try
+    {
+        if('false'==dbCheck('status5')) return;
+        db.close();
+        db.open(dbName);
+        var sql = "create table if not exists " + table1_name + table1_fields_str;
+        db.execute(sql);
+        addStatus('status5',"The sqlStatement (" + sql + ") has executed succeed!<br />");
+        db.close();
+        addStatus('status5',"db.close() by manual!");
+    }
+    catch(e)
+    {
+        db.close();
+        addStatus('status5',"<err>exception:</err>create table " + table1_name + table1_fields_str + " make mistake!<br />" + e.toString());
+    }
+}
+function doInsertInto(idName, idTel, idMPhone){
+    if('false'==dbCheck('status6')) return;
+    clearStatus('status6');
+    
+    var f_name = getElementById(idName);
+    var f_tel = getElementById(idTel);
+    var f_mPhone = getElementById(idMPhone);
+    
+    var name = "";
+    var tel = "";
+    var mPhone = "";
+    
+    if(isDefined(typeof f_name)){
+        name = f_name.value;
+    }
+    if(isDefined(typeof f_tel)){
+        tel = f_tel.value;
+    }
+    if(isDefined(typeof f_mPhone)){
+        mPhone = f_mPhone.value;
+    }
+    addStatus('status6',"Name: " + name + "  Tel: " + tel + "  Mobile Phone: " + mPhone + "<br />");
+    
+    //core of insert into ...
+    //db.execute('insert
+    try
+    {
+        db.close();
+        db.open(dbName);
+        var time = new Date().getTime();
+        var parms = [name, tel, mPhone ,time];
+        
+        db.execute("insert into " + table1_name + " values(?,?,?,?)", parms);
+        
+        //!!the two property must be invoked when the database no closed!
+        clearStatus('status8');
+        addStatus('status8', "The last insert rowid in database is '<b>" + db.lastInsertRowId + "</b>'");
+        clearStatus('status9');
+        addStatus('status9', "The number of database rows is '<b>" + db.rowsAffected + "</b>' that were changed, inserted, or deleted  ");
+        
+        var sql = "insert into " + table1_name + " values( " + name + " , " + tel + " , " + mPhone + " , " + time +" )";
+        addStatus('status6',"The sqlStatement = ( " + sql + " ) has executed succeed!");
+        db.close();
+        addStatus('status6',"db.close() by manual!<br />");
+    }
+    catch(e)
+    {
+        db.close();
+        addStatus('status6',"<err>exception:</err> " + e.toString() + "<br />");
+    }
+}
+function formatToDate(time){
+    var date = new Date();
+    date.setTime(time);
+    return date;
+}
+function doSelect(){
+    clearStatus('status7');
+    if('false'==dbCheck('status7')) return;
+    try
+    {   
+        db.close();
+        db.open(dbName);
+        var sql = "select * from " + table1_name + " order by AddTime desc";
+        var rs = db.execute(sql);
+        addStatus('status7',"The sqlStatement = ( " + sql + " ) has executed succeed!");
+        
+        var result = "";
+        var fieldCount = 4;
+        
+        var width="200px";
+        
+        //output the headText
+        for(var i=0;i<table1_fields_info.fields.length;i++){
+            result += ("<div style='width:" + width + ";float:left; color:blue;'>" + table1_fields_info.fields[i].name + "</div>");
+        }
+        var rowNum = 0;
+
+        while(rs.isValidRow()){
+            for(var i=0;i<fieldCount;i++){
+                var itemId = new item(rowNum,i).getItemId();
+                if(i==3)
+                    result += ("<div id='"+itemId+"' onclick=\"new row().initByRowNumber("+rowNum+").select(callerSelectRow);\" style='float:left;'>" + formatToDate(rs.field(i)).toUTCString() + "</div>");
+                else
+                    result += ("<div id='"+itemId+"' onclick=\"new row().initByRowNumber("+rowNum+").select(callerSelectRow);\" style='width:" + width + ";float:left;'>" + rs.field(i) + "</div>");
+            }
+            result += "<br />";
+            rowNum++;
+            rs.next();
+        }
+        addStatus('status7',"<br />" + result + "<br />");
+    }
+    catch(e)
+    {
+        db.close();
+        addStatus('status7',"<err>exception:</err> " + e.toString());
+    }
+}
+
+function item(rowNumber, columnNumber){
+    this.rowNumber = rowNumber;
+    this.columnNumber = columnNumber;
+    
+    this.create = function(rowNumber, columnNumber){
+        return new item(rowNumber,columnNumber);
+    }
+    
+    this.setRow = function(itemId){
+        var rc = itemId.split('r')[1].split('_');
+        this.rowNumber = rc[0];
+        this.columnNumber = rc[1];
+        return new item(this.rowNumber,this.columnNumber);
+    }
+    
+    this.getItemId = function(){
+        //return "r" + this.rowNumber + "_" + this.columnNumber;
+        return this.fmtItemId(this.rowNumber,this.columnNumber);
+    }
+    
+    this.fmtItemId = function(rowNumber,columnNumber){
+        return "r" + rowNumber + "_" + columnNumber;
+    }
+
+    this.getRowNumber = function(){
+        return this.rowNumber;   
+    }
+    
+    this.getColumnNumber = function(){
+        return this.columnNumber;
+    }
+
+    //mark the item you selected.
+    //[option]caller(obj):a functin after select();
+    this.select = function(caller){
+        this.selectById(this.getItemId());
+    }
+    //[option]caller(obj):a functin after select();
+    this.selectById =function(id, caller){
+        this.selectByObj(getElementById(id,caller));
+    }
+    
+    //[option]caller(obj):a functin after select();
+    this.selectByObj = function(obj,caller){
+        if(isDefined(typeof obj)){
+            //IE only
+//            if(obj.style.backgroundColor!="#ffffff")
+//                obj.style.backgroundColor = "#ffffff";
+//            else
+//                obj.style.backgroundColor = "#E5ECF9";
+            obj.style.backgroundColor = "#E5ECF9";
+        }
+        if(isDefined(typeof caller))
+            caller(obj);
+    }
+};
+/*Set an number as the maximal bound of a row.
+    You can set any size beyond the maximal number 
+    that not must equals to the actual upper limit.
+    It would not overflow if you set astronomical.*/
+var MAX_COLUMN_COUNT = table1_fields_info.fields.length;
+function row(){
+    this.items = [];
+    this.number = -1;
+    this.maxLimitCol = -1;
+    this.initByItem = function(item){
+        this.initByRowNumber(item.getRowNumber());
+    }
+    
+    //base
+    this.initByRowNumber = function(rowNumber){
+        var colNumber = 0;
+        this.number = rowNumber;
+        var util = new item();
+        while(colNumber < MAX_COLUMN_COUNT){
+            var mem = getElementById(util.fmtItemId(rowNumber,colNumber));
+            if(isDefined(typeof mem)){
+                this.items.push(mem);
+                this.maxLimitCol = colNumber++;
+            }
+            else break;
+        }
+        pageRows.add(this);
+        return this;
+    }
+    
+    //[option]caller(obj):a functin after select();
+    //return [rowNumber,columnNumber];
+    this.select = function(caller){
+        if(this.items.length == 0) return;
+        var util = new item();
+        for(var i=0;i<this.items.length;i++){
+            util.selectByObj(this.items[i],caller);
+        }
+        return [this.number,this.items.length];
+    }
+};
+var page_rows = [];
+var pageRows = new (function(){
+    //add a new member!if it has contained, no add it.
+    this.add = function(arow){
+        var hasContained = 0;
+        for(var i=0;i<page_rows.length;i++){
+            if(arow.number == page_rows[i].number)
+                hasContained = 1;
+        }
+        if(!hasContained)
+            page_rows.push(arow);
+    };
+})();
+
+function doLastInsertRowId(){
+    clearStatus('status8');
+    try
+    {
+//        db.close();
+//        db.open(dbName);
+        //addStatus('status8', "The last insert rowid in database is '" + db.lastInsertRowId + "'");
+        addStatus('status8', "The property must be invoked when the database no closed! Click 'Insert into' button to toggle it ");
+//        db.close();
+    }
+    catch(e)
+    {
+//        db.close();
+        addStatus('status8',e.toString());
+    }
+}
+
+function doRowsAffected(){
+    clearStatus('status9');
+    try
+    {
+//        db.close();
+//        db.open(dbName);
+//        addStatus('status9', "The number of database rows is'" + db.rowsAffected + "' that were changed, inserted, or deleted  ");
+          addStatus('status9', "The property must be invoked when the database no closed! Click 'Insert into' button to toggle it ");
+//        db.close();
+    }
+    catch(e)
+    {
+//        db.close();
+        addStatus('status9',e.toString());
+    }
+}
+<!--http://code.google.com/apis/gears/upcoming/api_database.html#Database-rowsAffected-->
+function doDeleteTable1(){
+    if(!confirm("Are you sure delete all records?\nIt can not be rollbacked!"))return;
+    clearStatus('status10');
+    try
+    {
+        db.close();
+        db.open(dbName);
+        var sql = "delete from " + table1_name;
+        db.execute(sql);
+        
+        clearStatus('status8');
+        addStatus('status8', "The last insert rowid in database is '<b>" + db.lastInsertRowId + "</b>'!");
+        clearStatus('status9');
+        addStatus('status9', "The number of database rows is '<b>" + db.rowsAffected + "</b>' that were changed, inserted, or deleted  ");
+        
+        addStatus('status10',"All records has removed!");
+        addStatus('status10',"<div class='block'>Note: An unconstrained delete of all rows in a table (DELETE FROM table) will return zero rather than the number of rows that were originally present in the table; if you need the number of rows, use DELETE FROM table WHERE 1 instead, though be aware that this is slower than an unconstrained delete.</div>");
+    }
+    catch(e)
+    {
+        addStatus('status10',e.toString());
+    }
+    finally
+    {
+        db.close();
+    }
+}
+
+function doDeleteTable2(){
+    if(!confirm("Are you sure delete all records?\nIt can not be rollbacked!"))return;
+    clearStatus('status11');
+    try
+    {
+        db.close();
+        db.open(dbName);
+        var sql = "delete from " + table1_name + " where 1";
+        db.execute(sql);
+        
+        clearStatus('status8');
+        addStatus('status8', "The last insert rowid in database is '<b>" + db.lastInsertRowId + "</b>'!");
+        clearStatus('status9');
+        addStatus('status9', "The number of database rows is '<b>" + db.rowsAffected + "</b>' that were changed, inserted, or deleted  ");
+        
+        addStatus('status11',"All records has removed!");
+        addStatus('status11',"<div class='block'>Note: An unconstrained delete of all rows in a table (DELETE FROM table) will return zero rather than the number of rows that were originally present in the table; if you need the number of rows, use DELETE FROM table WHERE 1 instead, though be aware that this is slower than an unconstrained delete.</div>");
+    }
+    catch(e)
+    {
+        addStatus('status11',e.toString());
+    }
+    finally
+    {
+        db.close();
+    }
+}
+
+function doDropTable(){
+    if(!confirm("Are you sure drop the table?\nIt can not be rollbacked!"))return;
+    clearStatus('status12');
+    try
+    {
+        db.close();
+        db.open(dbName);
+        var sql = "drop table " + table1_name;
+        db.execute(sql);
+        
+        addStatus('status12',"The table has been dropped!");
+    }
+    catch(e)
+    {
+        addStatus('status12',e.toString());
+    }
+    finally
+    {
+        db.close();
+    }
+}
+//a caller for row.select([caller]);
+function callerSelectRow(obj){
+    if(isDefined(typeof obj)){
+        var lastWord = obj.id.split('_')[1];
+        if(lastWord == '0'){
+            clearStatus("v_name");
+            addStatus("v_name",obj.innerHTML);
+        }
+        else if(lastWord == '1'){
+            clearStatus("v_telNum");
+            addStatus("v_telNum",obj.innerHTML);
+        }
+        else if(lastWord == '2'){
+            clearStatus("v_mobilePhoneNum");
+            addStatus("v_mobilePhoneNum",obj.innerHTML);
+        }
+    }
+}
+
+</script>
