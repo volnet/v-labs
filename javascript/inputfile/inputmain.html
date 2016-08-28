@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Test input file</title>
+        <style type="text/css">
+            .img_button { display:inline-block; width:300px; height:90px; padding:0px; margin:0px;}
+            .iframe { border:0px; width:300px;height:90px}
+        </style>
+        <script type="text/javascript">
+            var count = 0;
+            function finish_upload(success) {
+                var resultDiv = document.getElementById("result");
+                alert(count);
+                if(resultDiv) {
+                    if(count > 0){
+                        if (success) {
+                            resultDiv.innerHTML = "upload success";
+                        }
+                        else {
+                            resultDiv.innerHTML = "upload failed";
+                        }
+                    }
+                }
+                ++count;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="img_button">
+            <img src="btn-1.svg"/>
+        </div>
+        <div class="img_button">
+            <img src="btn-2.svg"/>
+        </div>
+        <div class="img_button">
+            <iframe src="inputfile.html" class="iframe">
+
+            </iframe>
+        </div>
+        <div id="result"></div>
+    </body>
+</html>

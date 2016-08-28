@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Test input file</title>
+        <style type="text/css">
+            body {border:0px; padding:0px; margin:0px;}
+        </style>
+        <script type="text/javascript">
+            function img_click(){
+                var fileInput = document.getElementById('myfile');
+                if(fileInput){
+                    fileInput.click();
+                }
+            }
+            function after_select() {
+                var myform = document.getElementById('myform');
+                if(myform){
+                    myform.submit();
+                }
+            }
+            function after_load(){
+                if(window.parent && window.parent.finish_upload){
+                    window.parent.finish_upload(true);
+                }
+            }
+            /*
+            function attachEvent(element, event, callbackFunction) {
+                if (element.addEventListener) {
+                    element.addEventListener(event, callbackFunction, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent('on' + event, callbackFunction);
+                }
+            }
+            attachEvent(window, 'load', after_load);
+            */
+            window.onload = after_load;
+        </script>
+    </head>
+    <body>
+        <form id="myform" action="inputfile.html" method="POST">
+            <input type="file" id="myfile" name="myfile" style="display:none;" onchange="after_select()"/>
+        </form>
+        <img src="btn-3.svg" onclick="img_click()"/>
+    </body>
+</html>
