@@ -89,6 +89,8 @@ print(dec_data)
 
 ### 使用PyCryptodome解密OpenSSL加密的值
 
+参考[这里](https://www.dlitz.net/software/pycrypto/api/2.6/Crypto.Cipher.PKCS1_v1_5.PKCS115_Cipher-class.html)
+
 ```
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_v1_5
@@ -109,6 +111,8 @@ print(decrypted_data)
 
 
 ### 使用PyCryptodome验证.NET RSACryptoServiceProvider/SHA256签名的数据
+
+参考[这里](http://legrandin.github.io/pycryptodome/Doc/3.4/Crypto.Signature.pkcs1_15-module.html)
 
 ```
 from Crypto.Signature import pkcs1_15
