@@ -66,4 +66,6 @@ COPY run_jupyter.sh /
 # IPython
 EXPOSE 8888
 
+WORKDIR "/notebooks"
+
 CMD ["/run_jupyter.sh", "--allow-root", "--NotebookApp.token=''"]
