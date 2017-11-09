@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helloworld_mvc", "helloworld_mvc\helloworld_mvc.csproj", "{805BA7EC-7AD7-4E81-97E8-111096FC9EA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{805BA7EC-7AD7-4E81-97E8-111096FC9EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{805BA7EC-7AD7-4E81-97E8-111096FC9EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{805BA7EC-7AD7-4E81-97E8-111096FC9EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{805BA7EC-7AD7-4E81-97E8-111096FC9EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
