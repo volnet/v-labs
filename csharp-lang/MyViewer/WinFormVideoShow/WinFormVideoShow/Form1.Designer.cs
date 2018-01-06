@@ -32,11 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnPlayOrPause = new System.Windows.Forms.PictureBox();
+            this.timerForShowingBtnPause = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPlayOrPause)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.ErrorImage = null;
             this.pictureBox1.InitialImage = null;
@@ -50,14 +54,27 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 33;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btnPlayOrPause
+            // 
+            this.btnPlayOrPause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPlayOrPause.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlayOrPause.Image = ((System.Drawing.Image)(resources.GetObject("btnPlayOrPause.Image")));
+            this.btnPlayOrPause.Location = new System.Drawing.Point(1105, 592);
+            this.btnPlayOrPause.Name = "btnPlayOrPause";
+            this.btnPlayOrPause.Size = new System.Drawing.Size(150, 150);
+            this.btnPlayOrPause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnPlayOrPause.TabIndex = 1;
+            this.btnPlayOrPause.TabStop = false;
+            this.btnPlayOrPause.Click += new System.EventHandler(this.btnPlayOrPause_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1364, 883);
+            this.Controls.Add(this.btnPlayOrPause);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -67,6 +84,7 @@
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDoubleClick);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPlayOrPause)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -75,6 +93,8 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox btnPlayOrPause;
+        private System.Windows.Forms.Timer timerForShowingBtnPause;
     }
 }
 

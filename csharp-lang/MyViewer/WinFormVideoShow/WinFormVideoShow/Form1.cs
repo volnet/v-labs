@@ -22,15 +22,53 @@ namespace WinFormVideoShow
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            InitUI();
+            this.timer1.Interval = 1000 / Configs.FPS;
             framePath = GetFramePath();
-            timer1.Start();
+        }
+
+        private void InitUI()
+        {
+            // PlayOrPause button
+            this.btnPlayOrPause.Parent = this.pictureBox1;
+            this.btnPlayOrPause.Image = global::WinFormVideoShow.Properties.Resources.play;
+            this.btnPlayOrPause.Text = "";
+
+            this.pictureBox1.MouseHover += PictureBox1_MouseHover;
+            this.pictureBox1.MouseLeave += PictureBox1_MouseLeave;
+            this.btnPlayOrPause.MouseHover += BtnPlayOrPause_MouseHover;
+            this.btnPlayOrPause.MouseLeave += BtnPlayOrPause_MouseLeave;
+        }
+
+        private void PictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            btnPlayOrPauseNeedBeHide = true;
+            HideBtnPauseLater();
+        }
+
+        private void BtnPlayOrPause_MouseLeave(object sender, EventArgs e)
+        {
+            btnPlayOrPauseNeedBeHide = true;
+            HideBtnPauseLater();
+        }
+
+        private void BtnPlayOrPause_MouseHover(object sender, EventArgs e)
+        {
+            btnPlayOrPauseNeedBeHide = false;
+            ShowBtnPause();
+        }
+
+        private void PictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            btnPlayOrPauseNeedBeHide = false;
+            ShowBtnPause();
         }
 
         private string framePath = string.Empty;
 
         private string GetFramePath()
         {
-            return System.IO.Path.GetFullPath("Video\\frame.jpg");
+            return Configs.FrameFullPath;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -55,30 +93,27 @@ namespace WinFormVideoShow
             }
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            pictureBox1.Size = this.Size;
-        }
-
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F11 || e.KeyCode == Keys.Escape)
             {
-                MaxToFullScreen();
+                SwitchFullScreen();
             }
         }
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            MaxToFullScreen();
+            SwitchFullScreen();
         }
         
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
-            MaxToFullScreen();
+            SwitchFullScreen();
         }
 
-        private void MaxToFullScreen()
+        #region FullScreen
+
+        private void SwitchFullScreen()
         {
             if (WindowState == FormWindowState.Maximized)
             {
@@ -102,5 +137,69 @@ namespace WinFormVideoShow
 
         private const int SW_HIDE = 0;  //隐藏任务栏
         private const int SW_RESTORE = 9;//显示任务栏
+
+        #endregion
+
+        private void btnPlayOrPause_Click(object sender, EventArgs e)
+        {
+            SwitchPlayOrPause();
+        }
+        
+        private bool isPlaying = false;
+        private void SwitchPlayOrPause()
+        {
+            if (isPlaying)
+            {
+                this.btnPlayOrPause.Image = global::WinFormVideoShow.Properties.Resources.play;
+                isPlaying = false;
+                timer1.Stop();
+            }
+            else
+            {
+                this.btnPlayOrPause.Image = global::WinFormVideoShow.Properties.Resources.pause;
+                isPlaying = true;
+                btnPlayOrPauseNeedBeHide = true;
+                timer1.Start();
+
+                HideBtnPauseLater();
+            }
+        }
+
+        private void ShowBtnPause()
+        {
+            this.btnPlayOrPause.Visible = true;
+        }
+
+        private void HideBtnPauseLater()
+        {
+            InitTimerForShowingBtnPause();
+            timerForShowingBtnPause.Start();
+        }
+
+        private void InitTimerForShowingBtnPause()
+        {
+            timerForShowingBtnPause.Interval = 2000;
+            timerForShowingBtnPause.Tick += TimerForShowingBtnPause_Tick;
+        }
+
+        private bool btnPlayOrPauseNeedBeHide = false;
+
+        private void TimerForShowingBtnPause_Tick(object sender, EventArgs e)
+        {
+            if (isPlaying && btnPlayOrPauseNeedBeHide)
+            {
+                this.btnPlayOrPause.Visible = false;
+                timerForShowingBtnPause.Stop();
+            }
+        }
+
+
+        [DllImport("user32.dll", EntryPoint = "ShowCursor", CharSet = CharSet.Auto)]
+        public extern static void ShowCursor(int status);
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            this.pictureBox1.Size = this.ClientSize;
+        }
     }
 }
