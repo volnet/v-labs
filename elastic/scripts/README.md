@@ -38,7 +38,7 @@ If no diagrams, check the time you selected, the default is `Last 15 minutes`.
 5. [option]If you want to release resource, erase data, reset all to restart, try to run:
 
 ```
-resetall.sh
+./resetall.sh
 ```
 
 Resources
@@ -66,4 +66,10 @@ docker pull docker.elastic.co/beats/metricbeat:6.3.0
 
 ```
 docker pull docker.elastic.co/beats/filebeat:6.3.0
+```
+
+5. Sample configure for metricbeat
+
+```
+https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-system.html
 ```
