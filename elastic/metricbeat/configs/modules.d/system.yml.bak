@@ -3,20 +3,11 @@
     by_cpu: 5      # include top 5 processes by CPU
     by_memory: 5   # include top 5 processes by memory
 
-- module: system
-  metricsets:
-    - cpu
-    - filesystem
-    - memory
-    - network
-    - process
-    - socket
-    - diskio
-    - process
-  enabled: true
-  period: 10s
-  processes: ['.*']
-  cpu_ticks: false
+#- module: system
+#  metricsets:
+#    - core
+#    - diskio
+#    - socket
 
 - module: system
   period: 1m
