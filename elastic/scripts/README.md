@@ -37,7 +37,7 @@ docker ps
 
 浏览器访问`http://hostIP:5601`，点击左侧的Dashboard.
 
-你将看到`metricbeat-*`相关的Tab，如果没有看到图表，或者图表为空，可能是选择的时间段有错。系统默认选择的是`Last 15 minutes`，但是可能因为虚拟机（特别是Windows的HyperV+Linux）中的时间不对。（可以参考[这里](../../linux/utctime.md)）
+你将看到`metricbeat-*`相关的Tab，如果没有看到图表，或者图表为空，可能是选择的时间段有错。系统默认选择的是`Last 15 minutes`，但是可能因为虚拟机（特别是Windows的HyperV+Linux）中的时间不对。（可以参考[这里](../../linux/system/utctime.md)）
 
 5. [可选]如果你想要释放资源，删除数据，或者前面的步骤有错需要回到原点，可以尝试运行：
 
