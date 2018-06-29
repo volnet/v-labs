@@ -1,0 +1,25 @@
+filebeat.config:
+  prospectors:
+    path: ${path.config}/prospectors.d/*.yml
+    reload.enabled: false
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+processors:
+- add_cloud_metadata:
+
+filebeat.inputs:
+- type: log
+  paths:
+    - /usr/share/filebeat/logs/*.log
+
+setup.dashboards.enabled: true
+
+setup.kibana:
+  host: "0.0.0.0:5601"
+
+output.elasticsearch:
+  hosts: ['0.0.0.0:9200']
+  # username: elastic
+  # password: changeme
