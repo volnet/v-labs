@@ -5,7 +5,7 @@ CentOS Minimal的yum install git只能安装1.8版本的git。 为了能用上�
 
 1. 下载源码包：从这里选一个`https://mirrors.edge.kernel.org/pub/software/scm/git/` 或者直接`curl -o git-2.18.0.tar.gz https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz`
 
-2. 解压压缩包 tar -zxf git-2.18.0.tar.gz && cd git-2.18.0
+2. 解压压缩包`tar -zxf git-2.18.0.tar.gz && cd git-2.18.0`
 
 3. 从yum安装各种包：`yum install autoconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel asciidoc xmlto`
 
@@ -41,3 +41,8 @@ $ git add .
 $ git commit -m "test git install"
 $ git push -u
 ```
+
+See also
+--------------------------
+
+1. [English Version](https://stackoverflow.com/a/51102026/310226)
