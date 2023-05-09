@@ -50,7 +50,7 @@ def convert_zone_strftime(time: datetime, zone: str):
     return zone_time.strftime('D:%Y%m%d%H%M%S{}'.format(timezone_offset))
 
 if __name__ == '__main__':
-    pdf_dir = r"C:\Users\gongcen\Downloads\入职欢迎\入职欢迎" 
+    pdf_dir = r"C:\Users\volnet\Downloads\pdfs" 
     # 定义要修改的日期和时间
     creation_time = datetime.datetime(2023, 3, 12, 12, 20, 30)
     
