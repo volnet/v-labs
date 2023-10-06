@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remove HTML Tags</title>
+</head>
+<body>
+    <h1>HTML to Text</h1>
+    <h2>Input html with tags here:</h2>
+    <textarea id="input" rows="10" cols="100"></textarea>
+    <br />
+    <button onclick="displayInput()">Display Input</button>&nbsp;
+    <button onclick="removeTags()">Remove Tags</button>&nbsp;
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    <h2>Output:</h2>
+    <p id="output" style="background-color:bisque;"></p>
+
+    <script>
+        function displayInput() {
+            var input = document.getElementById('input').value;
+            document.getElementById('output').innerHTML = input;
+        }
+
+        function removeTags() {
+            var input = document.getElementById('input').value;
+            var output = input.replace(/<[^>]*>/g, '');
+            document.getElementById('output').innerHTML = output;
+        }
+
+        function copyToClipboard() {
+            var output = document.getElementById('output');
+            var range = document.createRange();
+            range.selectNode(output);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+</body>
+</html>
